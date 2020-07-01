@@ -522,7 +522,7 @@ class InstallerEngine:
         #remove pacman
         self.update_progress(our_current, our_total, False, False, _("Clearing Pacman"))
         print(" --> Clearing pacman")
-        self.do_run_in_chroot("yes | pacman -R archiso")
+        self.do_run_in_chroot("yes | pacman -Rsnc archiso")
 
         if self.setup.luks:
             with open("/target/etc/default/grub.d/61_live-installer.cfg", "w") as f:
