@@ -625,10 +625,8 @@ class InstallerEngine:
                                  False, False, _("Installing bootloader"))
             print(" --> Running grub-install")
             if os.path.exists("/sys/firmware/efi"):
-                self.do_run_in_chroot(
-                    "mount /dev/sda1 /boot/efi")
-                self.do_run_in_chroot(
-                    "grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=TeArch")
+                os.system(
+                    "grub-install --target=x86_64-efi --efi-directory=/target/boot/efi --root-directory=/target --bootloader-id=TeArch")
             else:
                 self.do_run_in_chroot(
                     "grub-install --force %s" % self.setup.grub_device)
